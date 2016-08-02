@@ -11,7 +11,12 @@ Student::Student()
 
 	this->lname = nullptr;
 	this->fname = nullptr;
-	this->group = nullptr;		
+	this->group = nullptr;
+
+	Date d;
+	Time t;
+	this->date = d.getCurrentDate();
+	this->time = t.getCurrentTime();
 }
 
 
@@ -24,6 +29,7 @@ Student::Student(int id, int test_id, int right, int wrong, int grade,
 	this->test_id = test_id;
 	this->right = right;
 	this->wrong = wrong;
+	this->grade = grade;
 
 	this->lname = (TCHAR*)lname;
 	this->fname = (TCHAR*)fname;
@@ -40,6 +46,7 @@ Student::Student(const Student &s)
 	this->test_id = s.test_id;
 	this->right = s.right;
 	this->wrong = s.wrong;
+	this->grade = s.grade;
 
 	this->lname = (TCHAR*)s.lname;
 	this->fname = (TCHAR*)s.fname;

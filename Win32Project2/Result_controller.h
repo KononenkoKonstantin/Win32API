@@ -30,6 +30,11 @@ public:
 	TCHAR buff5[256];
 	TCHAR buff6[256];
 	TCHAR buff7[256];
+	TCHAR buff8[256];
+	TCHAR grade[16];
+	TCHAR right[16];
+	TCHAR wrong[16];
+	
 	std::string path;
 	Console console;
 };
