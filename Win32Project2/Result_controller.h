@@ -3,6 +3,7 @@
 #include "Student.h"
 #include "Test.h"
 
+
 class Result_controller
 {
 	void SaveData();
@@ -31,10 +32,14 @@ public:
 	TCHAR buff6[256];
 	TCHAR buff7[256];
 	TCHAR buff8[256];
+	TCHAR buff9[256];
 	TCHAR grade[16];
 	TCHAR right[16];
 	TCHAR wrong[16];
 	
+	char lname[64];
+	char fname[64];
+	char group[32];
 	std::string path;
 	Console console;
 };

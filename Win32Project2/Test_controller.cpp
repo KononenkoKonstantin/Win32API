@@ -107,7 +107,7 @@ void Test_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotif
 	{
 		if (r1)
 		{
-			if (question.getRightAnswerNum() == 1)
+			if (question.getRightAnswerNum() == question.getId())
 			{
 				student.setGrade(question.getWeight());
 				isRight = true;
@@ -115,7 +115,7 @@ void Test_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotif
 		}
 		if (r2)
 		{
-			if (question.getRightAnswerNum() == 2)
+			if (question.getRightAnswerNum() == question.getId())
 			{
 				student.setGrade(question.getWeight());
 				isRight = true;
@@ -123,7 +123,7 @@ void Test_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotif
 		}
 		if (r3)
 		{
-			if (question.getRightAnswerNum() == 3)
+			if (question.getRightAnswerNum() == question.getId())
 			{
 				student.setGrade(question.getWeight());
 				isRight = true;
@@ -131,7 +131,7 @@ void Test_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotif
 		}
 		if (r4)
 		{
-			if (question.getRightAnswerNum() == 4)
+			if (question.getRightAnswerNum() == question.getId())
 			{
 				student.setGrade(question.getWeight());
 				isRight = true;
@@ -139,7 +139,7 @@ void Test_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotif
 		}
 		if (r5)
 		{
-			if (question.getRightAnswerNum() == 5)
+			if (question.getRightAnswerNum() == question.getId())
 			{
 				student.setGrade(question.getWeight());
 				isRight = true;
@@ -192,8 +192,8 @@ void Test_controller::Cls_OnTimer(HWND hWnd, UINT id)
 			MessageBox(hWnd, L"Время истекло", L"", MB_OK);
 			position = 0;
 			EndDialog(hWnd, 0);
-			//rc.setStudent(student);
-			//DialogBox(GetModuleHandle(0), MAKEINTRESOURCE(IDD_DIALOG3), hWnd, Result_controller::DlgProc);
+			rc.setStudent(student);
+			DialogBox(GetModuleHandle(0), MAKEINTRESOURCE(IDD_DIALOG3), hWnd, Result_controller::DlgProc);
 		}		
 	}
 	(min<10) ? swprintf_s(buff, TEXT("0%d"), min) : swprintf_s(buff, TEXT("%d"), min);

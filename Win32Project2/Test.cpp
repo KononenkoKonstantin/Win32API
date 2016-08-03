@@ -47,8 +47,7 @@ bool Test::loadFromFile()
 	{
 		while (!fin.eof())
 		{
-			std::vector<Answer> ans;
-			
+			std::vector<Answer> ans;			
 			ans.reserve(10);
 			pos = 0;
 

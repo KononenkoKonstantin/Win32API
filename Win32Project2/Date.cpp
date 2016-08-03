@@ -24,8 +24,12 @@ std::string Date::getCurrentDate()
 	this->day = ts.tm_mday;
 	this->month = ts.tm_mon + 1;
 	this->year = ts.tm_year + 1900;
-	std::string tmp = std::to_string(day) + "." + std::to_string(month) + "." + std::to_string(year);
-	return tmp;
+	std::string d1;
+	std::string m1;
+	(day < 10) ? d1 = "0" + std::to_string(day) : d1 = std::to_string(day);
+	(month < 10) ? m1 = "0" + std::to_string(month) : d1 = std::to_string(month);
+	
+	return (d1 + "." + m1 + "." + std::to_string(year));
 }
 std::ostream &operator<<(std::ostream &os, const Date &d)
 {

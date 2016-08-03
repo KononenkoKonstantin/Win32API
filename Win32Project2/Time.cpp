@@ -25,7 +25,10 @@ std::string Time::getCurrentTime()
 	localtime_s(&ts, &current);
 	this->hour = ts.tm_hour;
 	this->min = ts.tm_min;
-	return std::to_string(hour) + ":" + std::to_string(min);
+	std::string h1, m1;
+	(hour < 10) ? h1 = "0" + std::to_string(hour) : h1 = std::to_string(hour);
+	(min < 10) ? m1 = "0" + std::to_string(min) : m1 = std::to_string(min);
+	return h1 + ":" + m1;
 }
 
 std::ostream &operator<<(std::ostream &os, const Time &t)
