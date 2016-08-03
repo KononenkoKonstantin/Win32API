@@ -21,7 +21,7 @@ Test_controller::Test_controller(Student &student, std::string path)
 	ptr = this;
 	this->test = new Test(student, path);
 	this->count = 10;
-	this->min = count * 1;
+	this->min = 1;
 	this->sec = 0;
 	this->path = path;
 	this->student = student;	
@@ -92,6 +92,7 @@ BOOL Test_controller::Cls_OnInitDialog(HWND hWnd, HWND hWndFocus, LPARAM lParam)
 void Test_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotify)
 {	
 	bool isRight = false;
+	std::vector<Answer> ans(question.getAnswers());	
 
 	int r1 = 0, r2 = 0, r3 = 0, r4 = 0, r5 = 0;
 	r1 = SendMessage(hRadio1, BM_GETCHECK, 0, 0);
@@ -106,16 +107,16 @@ void Test_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotif
 	if (id == IDC_BUTTON1)
 	{
 		if (r1)
-		{
-			if (question.getRightAnswerNum() == question.getId())
+		{			
+			if (question.getRightAnswerNum() == ans[0].getId())
 			{
 				student.setGrade(question.getWeight());
 				isRight = true;
-			}
+			}			
 		}
 		if (r2)
 		{
-			if (question.getRightAnswerNum() == question.getId())
+			if (question.getRightAnswerNum() == ans[1].getId())
 			{
 				student.setGrade(question.getWeight());
 				isRight = true;
@@ -123,7 +124,7 @@ void Test_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotif
 		}
 		if (r3)
 		{
-			if (question.getRightAnswerNum() == question.getId())
+			if (question.getRightAnswerNum() == ans[2].getId())
 			{
 				student.setGrade(question.getWeight());
 				isRight = true;
@@ -131,7 +132,7 @@ void Test_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotif
 		}
 		if (r4)
 		{
-			if (question.getRightAnswerNum() == question.getId())
+			if (question.getRightAnswerNum() == ans[3].getId())
 			{
 				student.setGrade(question.getWeight());
 				isRight = true;
@@ -139,7 +140,7 @@ void Test_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotif
 		}
 		if (r5)
 		{
-			if (question.getRightAnswerNum() == question.getId())
+			if (question.getRightAnswerNum() == ans[4].getId())
 			{
 				student.setGrade(question.getWeight());
 				isRight = true;

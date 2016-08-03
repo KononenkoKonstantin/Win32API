@@ -129,7 +129,7 @@ void Result_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNot
 		
 		break;
 	case IDC_BUTTON2:
-		PostMessage(FindWindow(NULL, L"Test"), WM_QUIT, 0, 0);
+		PostMessage(FindWindow(NULL, L"Тест"), WM_QUIT, 0, 0);
 		EndDialog(hWnd, 0);
 		break;
 	}

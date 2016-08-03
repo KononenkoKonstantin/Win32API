@@ -109,6 +109,7 @@ void Controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotify)
 		else
 		{
 			isRegOk = true;
+			EnableWindow(hButtonRegistr, FALSE);
 		}
 		break;
 	}
@@ -119,7 +120,7 @@ void Controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotify)
 			MessageBox(hWnd, L"Вы не зарегистрировались", L"", MB_OK);
 		}
 		else
-		{					
+		{				
 			Test_controller tc(*student, tests[index].path);				
 			DialogBox(GetModuleHandle(0), MAKEINTRESOURCE(IDD_DIALOG2), hWnd, Test_controller::DlgProc);			
 		}

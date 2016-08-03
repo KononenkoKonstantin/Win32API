@@ -8,7 +8,7 @@ Test::Test()
 
 Test::Test(Student &s, std::string path)
 {		
-	this->QuestionsCount = questions.size();
+	this->QuestionsCount = this->questions.size();
 	this->student = s;
 	this->path = path;
 	this->id = s.getId();
@@ -19,6 +19,10 @@ Test::~Test()
 {
 }
 
+void Test::setPath(std::string path)
+{
+	this->path = path;
+}
 
 bool Test::loadFromFile()
 {

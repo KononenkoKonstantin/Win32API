@@ -25,5 +25,7 @@ public:
 	Answer getAnswer(unsigned int index) const;
 	int getQuestionsCount()const;	
 	
+	void setPath(std::string path);
+	
 };
 
