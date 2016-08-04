@@ -19,6 +19,16 @@ Test::~Test()
 {
 }
 
+int Test::getTestWeight()const
+{
+	int s = 0;
+	for (unsigned int i = 0; i < questions.size(); ++i)
+	{
+		s += this->questions[i].getWeight();
+	}
+	return s;
+}
+
 void Test::setPath(std::string path)
 {
 	this->path = path;
@@ -107,11 +117,14 @@ bool Test::loadFromFile()
 	return true;
 }
 
+int Test::getId() const
+{
+	return this->id;
+}
 
 std::vector<Question> Test::getAllQuestions() const
 {
-	//if (!this->questions.empty())
-		return this->questions;
+	return this->questions;
 }
 
 Question Test::getQuestion(unsigned int index) const

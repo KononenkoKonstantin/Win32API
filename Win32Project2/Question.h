@@ -12,11 +12,10 @@ class Question
 	int rightAns;
 	
 public:
-	Question();
-	~Question();
+	Question();	
 	Question(int id, TCHAR& text, int weight, std::vector<Answer> ans, int rightAns);
 	Question(const Question &q);
-	void setQuestion(const Question &q);
+	~Question();	
 
 	int getId() const;
 	TCHAR& getText() const;
@@ -25,7 +24,8 @@ public:
 	Answer getAnswerByIndex(int index) const;
 	int getRightAnswerNum() const;
 
-	void setId(int id);
+	void setQuestion(const Question &q);
+	void setId(int id);	
 	void setText(TCHAR &text);
 	void setWeight(int weight);
 	void setRightAnsNum(int index);

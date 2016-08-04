@@ -1,14 +1,9 @@
 #include "Answer.h"
 
-
 Answer::Answer()
 {
 	this->id = 0;	
 	this->text = nullptr;
-}
-
-Answer::~Answer()
-{
 }
 
 Answer::Answer(int id, TCHAR& text)
@@ -22,6 +17,11 @@ Answer::Answer(const Answer &ans)
 	this->id = ans.id;
 	this->text = ans.text;
 }
+
+Answer::~Answer()
+{
+}
+
 int Answer::getId() const
 {
 	return id;

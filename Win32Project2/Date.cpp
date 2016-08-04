@@ -6,16 +6,15 @@ Date::Date()
 	this->getCurrentDate();
 }
 
-Date::~Date()
-{
-}
-
 Date::Date(const Date &d)
 {
 	this->day = d.day;
 	this->month = d.month;
 	this->year = d.year;
 }
+
+Date::~Date() {}
+
 std::string Date::getCurrentDate()
 {
 	time_t current = time(NULL);

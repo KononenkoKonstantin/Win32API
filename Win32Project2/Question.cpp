@@ -10,10 +10,6 @@ Question::Question()
 	this->rightAns = 0;
 }
 
-Question::~Question()
-{	
-}
-
 Question::Question(int id, TCHAR& text, int weight, std::vector<Answer> ans, int rightAns)
 {
 	this->id = id;
@@ -32,14 +28,7 @@ Question::Question(const Question &q)
 	this->rightAns = q.rightAns;
 }
 
-void Question::setQuestion(const Question &q)
-{
-	this->id = q.id;
-	this->text = q.text;
-	this->weight = q.weight;
-	this->ans = q.ans;
-	this->rightAns = q.rightAns;
-}
+Question::~Question() {}
 
 int Question::getId() const
 {
@@ -68,6 +57,15 @@ Answer Question::getAnswerByIndex(int index) const
 int Question::getRightAnswerNum() const
 {
 	return this->rightAns;
+}
+
+void Question::setQuestion(const Question &q)
+{
+	this->id = q.id;
+	this->text = q.text;
+	this->weight = q.weight;
+	this->ans = q.ans;
+	this->rightAns = q.rightAns;
 }
 
 void Question::setId(int id)

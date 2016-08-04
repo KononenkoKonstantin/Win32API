@@ -8,9 +8,9 @@ class Result_controller
 {
 	void SaveData();
 public:
-	Result_controller();
-	~Result_controller();	
+	Result_controller();		
 	Result_controller(Student &student);
+	~Result_controller();
 
 	static BOOL CALLBACK DlgProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	static Result_controller *ptr;
@@ -33,14 +33,16 @@ public:
 	TCHAR buff7[256];
 	TCHAR buff8[256];
 	TCHAR buff9[256];
+	TCHAR buff10[256];
 	TCHAR grade[16];
 	TCHAR right[16];
 	TCHAR wrong[16];
 	
+	char testname[256];
 	char lname[64];
 	char fname[64];
 	char group[32];
-	std::string path;
+	std::string path;	
 	Console console;
 };
 

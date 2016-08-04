@@ -3,12 +3,12 @@
 struct TestName
 {
 	int id;
-	TCHAR *name;
+	std::string name;
 	std::string path;
 
-	TestName(int id, TCHAR &name, std::string &path);
+	TestName(int id, std::string &name, std::string &path);
+	TestName(const TestName &tn);
 	~TestName();
-
-	friend std::ostream &operator<<(std::ostream os, TestName &tn);
+	
 };
 

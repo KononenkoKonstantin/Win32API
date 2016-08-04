@@ -7,10 +7,7 @@
 
 class Controller
 {
-	TCHAR lname[512];
-	TCHAR fname[512];
-	TCHAR group[512];
-	std::vector<TestName> tests;
+	
 public:
 	Controller();
 	~Controller();
@@ -27,13 +24,16 @@ public:
 	HWND hCombo1;
 	HWND hList;
 	HBITMAP hBitmap;
-	HWND hWnd2;
+	
 	
 	int index;
 	Student *student;
 	int testNameCount;
 	bool isRegOk;
+	TCHAR lname[128];
+	TCHAR fname[128];
+	TCHAR group[32];
+	TCHAR buff2[256];
 	
-	//Console console;
-
+	std::vector<TestName> tests;	
 };

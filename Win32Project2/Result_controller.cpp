@@ -5,12 +5,6 @@ Result_controller *Result_controller::ptr = nullptr;
 Result_controller::Result_controller()
 {
 	ptr = this;
-
-}
-
-
-Result_controller::~Result_controller()
-{	
 }
 
 Result_controller::Result_controller(Student &student)
@@ -19,13 +13,17 @@ Result_controller::Result_controller(Student &student)
 	ptr = this;
 	this->student = student;
 	strcpy_s(lname, T2A(&student.getLname()));
+	strcpy_s(fname, T2A(&student.getFname()));
 	strcpy_s(group, T2A(&student.getGroup()));
 	std::string ln = lname;
+	std::string fn = fname;
 	std::string gr = group;
 		
-	this->path = "Data/Results/" + ln + "_" + gr	+ "_" + student.getDate() + ".txt";
-		this->SaveData();
+	this->path = "Data/Results/" + ln + "_" + fn + "_" + gr	+ "_" + student.getDate() + ".txt";
+	this->SaveData();
 }
+
+Result_controller::~Result_controller() {}
 
 void Result_controller::SaveData()
 {
@@ -43,13 +41,14 @@ void Result_controller::SaveData()
 	}
 	else
 	{
-		fout << "Фамилия: " << lname << "\n"
-			<< "Имя    : " << fname << "\n"
-			<< "Группа : " << group << "\n"
-			<< "Баллы  : " << this->student.getGrade() << "\n"
-			<< "Правильных ответов   : " << this->student.getRight() << "\n"
-			<< "Неправильных ответов : " << this->student.getWrong() << "\n"
-			<< "Дата : " << this->student.getDate() << std::endl;
+	    fout << this->student.getTestName().c_str() << "\n\n"
+			<< "Фамилия: " << lname << "\n"
+			 << "Имя    : " << fname << "\n"
+			 << "Группа : " << group << "\n"
+			 << "Баллы  : " << this->student.getGrade() << "\n"
+			 << "Правильных ответов   : " << this->student.getRight() << "\n"
+			 << "Неправильных ответов : " << this->student.getWrong() << "\n"
+			 << "Дата : " << this->student.getDate() << std::endl;
 	}
 	fout.close();
 }
@@ -64,11 +63,13 @@ void Result_controller::setStudent(Student &student)
 	USES_CONVERSION;
 	this->student = student;
 	strcpy_s(lname, T2A(&student.getLname()));
+	strcpy_s(fname, T2A(&student.getFname()));
 	strcpy_s(group, T2A(&student.getGroup()));
-	std::string l = lname;
-	std::string g = group;
+	std::string ln = lname;
+	std::string fn = fname;
+	std::string gr = group;
 
-	this->path = "Data/Results/" + l + "_" + g + "_" + student.getDate() + ".txt";
+	this->path = "Data/Results/" + ln + "_" + fn + "_" + gr + "_" + student.getDate() + ".txt";
 	this->SaveData();
 }
 BOOL Result_controller::Cls_OnInitDialog(HWND hWnd, HWND hWndFocus, LPARAM lParam)
@@ -76,19 +77,21 @@ BOOL Result_controller::Cls_OnInitDialog(HWND hWnd, HWND hWndFocus, LPARAM lPara
 	hList1 = GetDlgItem(hWnd, IDC_LIST1);
 	hButton1 = GetDlgItem(hWnd, IDC_BUTTON1);
 	hButton2 = GetDlgItem(hWnd, IDC_BUTTON2);
-
+	
+	wsprintf(buff10, L"%S", this->student.getTestName().c_str());
 	wsprintf(this->buff1, L"Фамилия  : ");
 	lstrcat(this->buff1, &this->student.getLname());
 
-	wsprintf(this->buff2, L"Имя         : ");
+	wsprintf(this->buff2, L"Имя          : ");
 	lstrcat(this->buff2, &this->student.getFname());
 
-	wsprintf(this->buff3, L"Группа   : ");
+	wsprintf(this->buff3, L"Группа    : ");
 	lstrcat(this->buff3, &this->student.getGroup());
 	
-	wsprintf(this->buff4, L"Баллы    : ");
+	wsprintf(this->buff4, L"Баллов   : ");
 	swprintf_s(grade, L"%d", this->student.getGrade());
-	lstrcat(this->buff4, grade);		
+	lstrcat(this->buff4, grade);
+
 	
 	wsprintf(this->buff5, L"Правильных ответов     : ");
 	swprintf_s(right, L"%d", this->student.getRight());
@@ -104,9 +107,10 @@ BOOL Result_controller::Cls_OnInitDialog(HWND hWnd, HWND hWndFocus, LPARAM lPara
 
 	wsprintf(this->buff9, L"Время : ");
 	wsprintf(buff8, L"%S", this->student.getTime().c_str());
-	lstrcat(this->buff9, this->buff8);
-	
+	lstrcat(this->buff9, this->buff8);	
 
+	SendMessage(hList1, LB_ADDSTRING, 0, (LPARAM)&buff10);
+	SendMessage(hList1, LB_ADDSTRING, 0, (LPARAM)L"\r\r");
 	SendMessage(hList1, LB_ADDSTRING, 0, (LPARAM)&buff1);
 	SendMessage(hList1, LB_ADDSTRING, 0, (LPARAM)&buff2);
 	SendMessage(hList1, LB_ADDSTRING, 0, (LPARAM)&buff3);
@@ -117,6 +121,7 @@ BOOL Result_controller::Cls_OnInitDialog(HWND hWnd, HWND hWndFocus, LPARAM lPara
 	SendMessage(hList1, LB_ADDSTRING, 0, (LPARAM)L"\r");
 	SendMessage(hList1, LB_ADDSTRING, 0, (LPARAM)&buff7);
 	SendMessage(hList1, LB_ADDSTRING, 0, (LPARAM)&buff9);
+
 	return TRUE;
 }
 
@@ -125,8 +130,7 @@ void Result_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNot
 	switch (id)
 	{
 	case IDC_BUTTON1:		
-		EndDialog(hWnd, 0);
-		
+		EndDialog(hWnd, 0);		
 		break;
 	case IDC_BUTTON2:
 		PostMessage(FindWindow(NULL, L"Тест"), WM_QUIT, 0, 0);

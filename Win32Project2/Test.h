@@ -16,16 +16,18 @@ class Test
 	bool loadFromFile();
 	
 public:
-	Test();
-	~Test();
+	Test();	
 	Test(Student &s, std::string path);
+	~Test();
 
+	int getId() const;
 	std::vector<Question> getAllQuestions() const;
 	Question getQuestion(unsigned int index) const;
 	Answer getAnswer(unsigned int index) const;
 	int getQuestionsCount()const;	
-	
+	int getTestWeight()const;
+
 	void setPath(std::string path);
-	
+	Console console;
 };
 

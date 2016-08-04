@@ -21,7 +21,7 @@ Test_controller::Test_controller(Student &student, std::string path)
 	ptr = this;
 	this->test = new Test(student, path);
 	this->count = 10;
-	this->min = 1;
+	this->min = 5;
 	this->sec = 0;
 	this->path = path;
 	this->student = student;	
@@ -59,7 +59,6 @@ BOOL Test_controller::Cls_OnInitDialog(HWND hWnd, HWND hWndFocus, LPARAM lParam)
 	hRadio5 = GetDlgItem(hWnd, IDC_RADIO5);
 
 	SendMessage(hProgress1, PBM_SETPOS, 0, 0);
-
 		
 	SetTimer(hWnd, 1, 1000, NULL);
 
@@ -109,40 +108,35 @@ void Test_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotif
 		if (r1)
 		{			
 			if (question.getRightAnswerNum() == ans[0].getId())
-			{
-				student.setGrade(question.getWeight());
+			{				
 				isRight = true;
 			}			
 		}
 		if (r2)
 		{
 			if (question.getRightAnswerNum() == ans[1].getId())
-			{
-				student.setGrade(question.getWeight());
+			{				
 				isRight = true;
 			}
 		}
 		if (r3)
 		{
 			if (question.getRightAnswerNum() == ans[2].getId())
-			{
-				student.setGrade(question.getWeight());
+			{				
 				isRight = true;
 			}
 		}
 		if (r4)
 		{
 			if (question.getRightAnswerNum() == ans[3].getId())
-			{
-				student.setGrade(question.getWeight());
+			{				
 				isRight = true;
 			}
 		}
 		if (r5)
 		{
 			if (question.getRightAnswerNum() == ans[4].getId())
-			{
-				student.setGrade(question.getWeight());
+			{				
 				isRight = true;
 			}
 		}
@@ -165,6 +159,8 @@ void Test_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotif
 		{		
 			KillTimer(hWnd, 1);
 			EndDialog(hWnd, 0);
+			min = 5;
+			SendMessage(hProgress1, PBM_SETPOS, 0, 0);
 			rc.setStudent(student);
 			DialogBox(GetModuleHandle(0), MAKEINTRESOURCE(IDD_DIALOG3), hWnd, Result_controller::DlgProc);			
 		}

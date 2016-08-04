@@ -20,8 +20,7 @@ void Controller::Cls_OnClose(HWND hWnd)
 }
 
 BOOL Controller::Cls_OnInitDialog(HWND hWnd, HWND hWndFocus, LPARAM lParam)
-{	
-	USES_CONVERSION;
+{		
 	hEdit1 = GetDlgItem(hWnd, IDC_EDIT1);
 	hEdit2 = GetDlgItem(hWnd, IDC_EDIT2);
 	hEdit3 = GetDlgItem(hWnd, IDC_EDIT3);
@@ -33,13 +32,9 @@ BOOL Controller::Cls_OnInitDialog(HWND hWnd, HWND hWndFocus, LPARAM lParam)
 	hList = GetDlgItem(hWnd, IDC_LIST2);
 
 	hBitmap = LoadBitmap(GetModuleHandle(0), MAKEINTRESOURCE(IDB_BITMAP1));
-	SendMessage(hPicture, STM_SETIMAGE, WPARAM(IMAGE_BITMAP), LPARAM(hBitmap));
-
-	//TCHAR buff1[128];
-	TCHAR buff2[512];	
-
-	std::string path = "Data/TestsList.txt";	
+	SendMessage(hPicture, STM_SETIMAGE, WPARAM(IMAGE_BITMAP), LPARAM(hBitmap));	
 	
+	std::string path = "Data/TestsList.txt";	
 	
 	std::ifstream fin;
 	fin.open(path.c_str(), std::ios_base::in);
@@ -61,22 +56,22 @@ BOOL Controller::Cls_OnInitDialog(HWND hWnd, HWND hWndFocus, LPARAM lParam)
 			std::getline(fin, buff);
 			pos1 = buff.find(delim);
 			num = buff.substr(0, pos1);
-			text = buff.substr(pos1 + 1, (buff.size() - pos1));
-			
-			//swprintf_s(buff1, 128, L"%s", num.c_str());
-			wsprintf(buff2, L"%S", text.c_str());
+			text = buff.substr(pos1 + 2, (buff.size() - pos1));
 
+			wsprintf(buff2, L"%S", text.c_str());
+			
 			EnableWindow(hButtonStart, FALSE);
 			SendMessage(hCombo1, CB_ADDSTRING, 0, (LPARAM)(buff2));
 			SendMessage(hCombo1, CB_SETCURSEL, 0, 0);				
 			
 			int id = testNameCount + 1;
-			std::string ids = std::to_string(id);
+			std::string ids;
+			(id < 10)? (ids = "0" + std::to_string(id)) : (ids = std::to_string(id));
 			std::string path1 = "Data/";
 			std::string path2 = ".txt";
-			std::string path3 = path1 + ids + path2;
+			std::string path3 = path1 + ids + path2;			
 			
-			TestName testName(id, *A2T(text.c_str()), path3);
+			TestName testName(id, text, path3);
 			tests.push_back(testName);			
 			this->testNameCount++;			
 		}
@@ -97,11 +92,7 @@ void Controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotify)
 		this->student->setLname(*lname);
 		this->student->setFname(*fname);
 		this->student->setGroup(*group);
-
-		//MessageBox(hWnd, &student->getLname(), L"", MB_OK);
-		//MessageBox(hWnd, &student->getFname(), L"", MB_OK);
-		//MessageBox(hWnd, &student->getGroup(), L"", MB_OK);
-
+				
 		if (lstrlen(lname) == 0 || lstrlen(fname) == 0 || lstrlen(group) == 0)
 		{
 			MessageBox(hWnd, L"Вы заполнили не все поля", L"", MB_OK);
@@ -120,7 +111,9 @@ void Controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotify)
 			MessageBox(hWnd, L"Вы не зарегистрировались", L"", MB_OK);
 		}
 		else
-		{				
+		{			
+			
+			this->student->setTestName(tests[index].name);			
 			Test_controller tc(*student, tests[index].path);				
 			DialogBox(GetModuleHandle(0), MAKEINTRESOURCE(IDD_DIALOG2), hWnd, Test_controller::DlgProc);			
 		}
@@ -128,7 +121,7 @@ void Controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotify)
 	}
 	case IDC_BUTTON3:
 	{
-		//DialogBox(GetModuleHandle(0), MAKEINTRESOURCE(IDD_DIALOG3), hWnd, Result_controller::DlgProc);
+		//DialogBox(GetModuleHandle(0), MAKEINTRESOURCE(IDD_DIALOG4), hWnd, Result_controller::DlgProc);
 		break;
 	}
 	case IDC_COMBO1:

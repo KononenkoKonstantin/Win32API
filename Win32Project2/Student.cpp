@@ -4,7 +4,7 @@
 Student::Student()
 {
 	this->id = 0;
-	this->test_id = 0;
+	this->testName = "no name";
 	this->right = 0;
 	this->wrong = 0;
 	this->grade = 0;	
@@ -12,21 +12,17 @@ Student::Student()
 	this->lname = nullptr;
 	this->fname = nullptr;
 	this->group = nullptr;
-
 	Date d;
 	Time t;
 	this->date = d.getCurrentDate();
 	this->time = t.getCurrentTime();
 }
 
-
-Student::~Student(){}
-
-Student::Student(int id, int test_id, int right, int wrong, int grade,
-	TCHAR &lname, TCHAR &fname, TCHAR &group, std::string date, std::string time)
+Student::Student(int id, std::string testName, int right, int wrong, int grade, TCHAR &lname,
+					TCHAR &fname, TCHAR &group, std::string date, std::string time)
 {
 	this->id = id;
-	this->test_id = test_id;
+	this->testName = testName;
 	this->right = right;
 	this->wrong = wrong;
 	this->grade = grade;
@@ -43,7 +39,7 @@ Student::Student(int id, int test_id, int right, int wrong, int grade,
 Student::Student(const Student &s)
 {
 	this->id = s.id;
-	this->test_id = s.test_id;
+	this->testName = s.testName;
 	this->right = s.right;
 	this->wrong = s.wrong;
 	this->grade = s.grade;
@@ -55,13 +51,15 @@ Student::Student(const Student &s)
 	this->time = s.time;
 }
 
+Student::~Student() {}
+
 int Student::getId() const
 {
 	return this->id;
 }
-int Student::getTestId() const
+std::string Student::getTestName() const
 {
-	return this->test_id;
+	return this->testName;
 }
 int Student::getRight() const
 {
@@ -100,9 +98,9 @@ void Student::setId(int id)
 {
 	this->id = id;
 }
-void Student::setTestId(int test_id)
+void Student::setTestName(std::string testName)
 {
-	this->test_id = test_id;
+	this->testName = testName;
 }
 void Student::setRight(int right)
 {
