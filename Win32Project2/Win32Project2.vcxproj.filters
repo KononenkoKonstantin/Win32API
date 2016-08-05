@@ -48,10 +48,10 @@
     <ClInclude Include="Result_controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Console.h">
+    <ClInclude Include="TestName.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestName.h">
+    <ClInclude Include="Test_constructor_controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -91,10 +91,10 @@
     <ClCompile Include="Result_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console.cpp">
+    <ClCompile Include="TestName.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestName.cpp">
+    <ClCompile Include="Test_constructor_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

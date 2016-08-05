@@ -42,7 +42,6 @@ public:
 	char lname[64];
 	char fname[64];
 	char group[32];
-	std::string path;	
-	Console console;
+	std::string path;		
 };
 

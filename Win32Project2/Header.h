@@ -16,8 +16,5 @@
 #include <random>
 #include <algorithm>
 
-#include <fcntl.h>
-#include <io.h>
-#include "Console.h"
 
 #pragma comment(lib, "comctl32")

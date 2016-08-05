@@ -3,3 +3,5 @@
 3 - Тест по STL
 4 - Тест по WinAPI
 5 - Тест по JavaScript
+6 - Тест по html
+7 - Тест по jqwery

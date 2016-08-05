@@ -121,7 +121,8 @@ void Controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNotify)
 	}
 	case IDC_BUTTON3:
 	{
-		//DialogBox(GetModuleHandle(0), MAKEINTRESOURCE(IDD_DIALOG4), hWnd, Result_controller::DlgProc);
+		Test_constructor_controller tcc;
+		DialogBox(GetModuleHandle(0), MAKEINTRESOURCE(IDD_DIALOG4), hWnd, Test_constructor_controller::DlgProc);
 		break;
 	}
 	case IDC_COMBO1:

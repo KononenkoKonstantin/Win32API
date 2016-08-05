@@ -25,9 +25,6 @@ public:
 	Question getQuestion(unsigned int index) const;
 	Answer getAnswer(unsigned int index) const;
 	int getQuestionsCount()const;	
-	int getTestWeight()const;
-
-	void setPath(std::string path);
-	Console console;
+	int getTestWeight()const;	
 };
 

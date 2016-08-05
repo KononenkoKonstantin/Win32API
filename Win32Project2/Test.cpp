@@ -29,11 +29,6 @@ int Test::getTestWeight()const
 	return s;
 }
 
-void Test::setPath(std::string path)
-{
-	this->path = path;
-}
-
 bool Test::loadFromFile()
 {
 	USES_CONVERSION;
