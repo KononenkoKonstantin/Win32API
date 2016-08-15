@@ -60,6 +60,7 @@ BOOL Test_constructor_controller::Cls_OnInitDialog(HWND hWnd, HWND hWndFocus, LP
 	SendMessage(hRadio3, BM_SETCHECK, (WPARAM)BST_UNCHECKED, 0);
 	SendMessage(hRadio4, BM_SETCHECK, (WPARAM)BST_UNCHECKED, 0);
 	SendMessage(hRadio5, BM_SETCHECK, (WPARAM)BST_UNCHECKED, 0);
+	this->indexRadio = 0;
 
 	swprintf_s(buffNum, L"%d", this->currentQuest + 1);
 	SetWindowText(hStatic2, buffNum);
@@ -89,14 +90,18 @@ void Test_constructor_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UI
 		GetWindowText(hEditAns3, buff3, 512);
 		GetWindowText(hEditAns4, buff4, 512);
 		GetWindowText(hEditAns5, buff5, 512);
-
 		
-		int index[5];
-		(r1) ? (index[0] = 1, indexRadio = 1) : index[0] = 0;
-		(r2) ? (index[1] = 2, indexRadio = 2) : index[1] = 0;
-		(r3) ? (index[2] = 3, indexRadio = 3) : index[2] = 0;
-		(r4) ? (index[3] = 4, indexRadio = 4) : index[3] = 0;
-		(r5) ? (index[4] = 5, indexRadio = 5) : index[4] = 0;
+		
+		if (r1)
+			indexRadio = 1;
+		if (r2)
+			indexRadio = 2;
+		if (r3)
+			indexRadio = 3;
+		if (r4)
+			indexRadio = 4;
+		if (r5)
+			indexRadio = 5;
 
 		if (lstrlen(name) == 0 || lstrlen(quest) == 0 || lstrlen(weight) == 0 || lstrlen(buff1) == 0 || lstrlen(buff2) == 0
 			|| lstrlen(buff3) == 0 || lstrlen(buff4) == 0 || lstrlen(buff5) == 0)
@@ -154,7 +159,7 @@ void Test_constructor_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UI
 					
 				}
 				std::string tmp;
-				(count < 10) ? (tmp = "0" + std::to_string(count + 1)) : (tmp = std::to_string(count + 1));
+				(count < 9) ? (tmp = "0" + std::to_string(count + 1)) : (tmp = std::to_string(count + 1));
 				path2 = "Data/" + tmp + ".txt";
 
 				
@@ -181,12 +186,14 @@ void Test_constructor_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UI
 
 				if ((this->currentQuest + 1) < maxQuest)
 				{
-					++this->currentQuest;
+					++this->currentQuest;					
 					SendMessage(hWnd, WM_INITDIALOG, 0, 0);
 				}
 				else
 				{
-					MessageBox(hWnd, L"Тест создан", L"", MB_OK);					
+					MessageBox(hWnd, L"Тест создан", L"", MB_OK);
+					//PostMessage(FindWindow(NULL, L"Конструктор тестов"), WM_QUIT, 0, 0);
+					
 					EndDialog(hWnd, 0);
 				}
 			}

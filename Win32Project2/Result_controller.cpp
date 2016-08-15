@@ -129,7 +129,8 @@ void Result_controller::Cls_OnCommand(HWND hWnd, int id, HWND hCtl, UINT codeNot
 {
 	switch (id)
 	{
-	case IDC_BUTTON1:		
+	case IDC_BUTTON1:
+		PostMessage(FindWindow(NULL, L"*"), WM_QUIT, 0, 0);
 		EndDialog(hWnd, 0);
 		
 		break;
